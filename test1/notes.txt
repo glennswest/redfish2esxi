@@ -1,0 +1,44 @@
+Glenns-MacBook-Pro-2:test1 gwest$ govc device.info -vm vm/ctl.k.e2e.bos.redhat.com ethernet-0
+Name:               ethernet-0
+  Type:             VirtualVmxnet3
+  Label:            Network adapter 1
+  Summary:          VM Network
+  Key:              4000
+  Controller:       pci-100
+  Unit number:      7
+  Connected:        true
+  Start connected:  true
+  Guest control:    true
+  Status:           ok
+  MAC Address:      00:50:56:1f:74:74
+  Address type:     manual
+Glenns-MacBook-Pro-2:test1 gwest$ cat try.sh
+export GOVC_INSECURE=1
+export GOVC_URL='https://root:LambShank5612@10.19.114.57/sdk'
+echo $GOVC_URL
+govc ls /ha-datacenter/vm
+govc vm.info vm/ctl.k.e2e.bos.redhat.com/
+govc device.ls -vm vm/ctl.k.e2e.bos.redhat.com
+#govc  object.collect -json vm/ctl.k.e2e.bos.redhat.com guest.net | jq
+Glenns-MacBook-Pro-2:test1 gwest$ govc device.ls -vm vm/ctl.k.e2e.bos.redhat.com
+ide-200       VirtualIDEController       IDE 0
+ide-201       VirtualIDEController       IDE 1
+ps2-300       VirtualPS2Controller       PS2 controller 0
+pci-100       VirtualPCIController       PCI controller 0
+sio-400       VirtualSIOController       SIO controller 0
+keyboard-600  VirtualKeyboard            Keyboard
+pointing-700  VirtualPointingDevice      Pointing device; Device
+video-500     VirtualMachineVideoCard    Video card
+vmci-12000    VirtualMachineVMCIDevice   Device on the virtual machine PCI bus that provides support for the virtual machine communication interface
+usb-7000      VirtualUSBController       Auto connect Disabled
+pvscsi-1000   ParaVirtualSCSIController  VMware paravirtual SCSI
+ahci-15000    VirtualAHCIController      AHCI
+cdrom-16000   VirtualCdrom               ISO [datastore1] iso/rhel-server-7.5-x86_64-dvd.iso
+disk-1000-0   VirtualDisk                419,430,400 KB
+disk-1000-1   VirtualDisk                314,572,800 KB
+disk-1000-2   VirtualDisk                209,715,200 KB
+ethernet-0    VirtualVmxnet3             VM Network
+ethernet-1    VirtualVmxnet3             Glan Network
+Glenns-MacBook-Pro-2:test1 gwest$ 
+
+
